@@ -1,0 +1,17 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="bikeshare.bikeshareapp.views.rest_framework" />
+          <option value="bikeshare.bikeshareapp.register_views.util" />
+          <option value="bikeshare.bikeshareapp.views.bikeshareapp" />
+          <option value="bikeshare.bikeshareapp.admin.*" />
+          <option value="bikeshare.util.sql_query.bikeshareapp" />
+          <option value="chapter3.rango.urls.rango" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
