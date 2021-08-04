@@ -1,0 +1,145 @@
+/*The navigation bar*/
+.search_form {
+  border: none;
+  padding: 8px 50px;
+  background-color:rgba(255,255,255,0.5);/*#AD6A42*/
+  position: absolute;
+  right: 450px;
+  margin-top: 5px;
+  border-radius: 45px;
+  font-size: 14px;
+}
+
+.search_form:hover {
+  background-color:rgba(255,255,255,0.9);/*#AD6A42*/
+}
+
+.submit_form{
+  border-radius: 45px;
+  border: none;
+  padding: 8px 50px;
+  margin-top: 5px;
+  position: absolute;
+  right: 300px;
+}
+
+.submit_form:hover {
+  color:#45bcf9;
+}
+
+.homepage{
+  position: absolute;
+  right: 50px;
+  border-radius: 45px;
+  margin-top: 5px;
+  border: none;
+  padding: 8px 50px;
+}
+
+.homepage:hover {
+  color:#45bcf9;
+}
+
+/*The main page body part*/
+.img_bg{
+  text-align: right;
+  background: rgba(210,180,140,0.7);/*#D2B48C;*/
+  opacity:0.7;
+}
+
+.auth_user{
+  font-size: 40px;
+  color: white;
+  text-shadow: 0 0 2px black;
+  position: absolute;
+  top:180px;
+  left:70px;
+  font-family: "Georgia";
+}
+
+.body_title {
+  color:white;
+  border: 1px solid #ccc;
+  width: 500px;
+  background: #D2B48C;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 45px;
+  position:relative;
+  top:40px;
+  left: 60px;
+  vertical-align: middle
+}
+
+.ask_question{
+  border-radius: 45px;
+  border: none;
+  padding: 8px 50px;
+  margin-top: 5px;
+  position:relative;
+  top:20px;
+  left: 760px;
+}
+
+.ask_question:hover {
+  color:#45bcf9;
+}
+
+.main-section{
+}
+
+/*left part*/
+.list_left{
+  float:left;
+  width:55%;
+  position:relative;
+  top:60px;
+  left: 40px;
+}
+
+/*right part*/
+.list-right{
+  float:right;
+}
+
+.box-fixed{
+  width:500px;
+  height:430px;
+  padding-top:20px;
+  background-color:rgba(210,180,140,0.2);/*#D2B48C;*/
+  position:relative;
+  top:-10px;
+  right: 25%;
+  text-align:center;
+  text-color:#fff;
+}
+
+.box-contents{
+  position:relative;
+  top:20px;
+  right: 20px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.list-right-2{
+  float:right;
+}
+
+.box-fixed-2 {
+  width:500px;
+  height:430px;
+  padding-top:20px;
+  background-color:rgba(210,180,140,0.2);/*#D2B48C;*/
+  position:relative;
+  top:100px;
+  right: -75%;
+  text-align:center;
+  text-color:#fff;
+}
+
+.box-contents-2{
+  position:relative;
+  top:30px;
+  right: 20px;
+}

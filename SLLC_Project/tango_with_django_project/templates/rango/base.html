@@ -6,12 +6,13 @@
     <head lang="en">
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <link rel="icon" type="image/png" sizes="144x144" href="{% static 'images/logo.JPG' %}"/>
         <title>
-            Rango -
+            SLLC -
             {% block title_block %}
                 How to Tango with Django!
             {% endblock %}
@@ -22,6 +23,8 @@
         {% block body_block %}
         {% endblock %}
         </div>
+        <!--<br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
         <div>
             {% block sidebar_block %}
                 {% get_category_list category %}
@@ -41,6 +44,6 @@
                 <li><a href="{% url 'rango:about' %}">About</a></li>
                 <li><a href="{% url 'rango:index' %}">Index</a></li>
             </ul>
-        </div>
+        </div>-->
     </body>
 </html>

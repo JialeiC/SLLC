@@ -25,7 +25,7 @@ def populate():
         {'title':'Django Rocks',
          'url':'http://www.djangorocks.com/',
          'views': 12},
-        {'title':'How to Tango with Django',
+        {'title':'What is the difference between list and tuples in Python? What are the key features of Python? What are the key features of Python?',
          'url':'http://www.tangowithdjango.com/',
          'views': 1258} ]
     

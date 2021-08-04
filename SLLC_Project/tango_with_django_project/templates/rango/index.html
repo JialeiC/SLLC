@@ -7,84 +7,122 @@
 {% endblock %}
 
 {% block body_block %}
-<!--<div vertical-align: middle>
-    <img src="{% static 'images/logo.JPG' %}" width="80" height="70" alt="Picture of Logo" />
-    <span style="color:#D2B48C;font-size:25px;"><b>Computer Language Forum</b></span>
-</div>-->
 <style type="text/css">
         html, body {width:100%;height:100%;}
-        .bg {display: table;width: 100%;height: 100%;padding: 100px 0;text-align: center;color: #D2B48C;background-color: #D2B48C;background-size: cover;}
-        .my-navbar {padding:20px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;}
+        .bg {display: table;width: 100%;height: 100%;padding: 30px 0;text-align: center;background-color: #D2B48C;background-size: cover;}
+        .my-navbar {padding:6px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;font-size:15px;}
         .my-navbar a{background:transparent !important;color:#fff !important}
         .my-navbar a:hover {color:#45bcf9 !important;background:transparent;outline:0}
-        .my-navbar a {transition: color 0.5s ease-in-out;}/*-webkit-transition ;-moz-transition*/
         .top-nav {padding:0;background:#D2B48C;}
-        button.navbar-toggle {background-color:#fbfbfb;}
-        button.navbar-toggle > span.icon-bar {background-color:#dedede}
-        </style>
+</style>
+
+<!--The navigation bar-->
 <nav class="navbar navbar-fixed-top my-navbar" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#example-navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand">Computer Language Forum</a>
-            </div>
-            <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Python</a></li>
-                    <li><a href="#">Java</a></li>
-                    <li>
-                        <a href="#">Js</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="navbar-brand" src="{% static 'images/logo.JPG' %}" alt="Picture of Rango" />
+            <a class="navbar-brand">Computer Language Forum</a>
         </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% if categories %}
+                    {% for category in categories %}
+                        <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>&nbsp
+                    {% endfor %}
+                {% else %}
+                    <strong>There are no categories present.</strong>
+                {% endif %}
+                <input class="search_form" type="search" name="search" placeholder="Search here...">
+                <button class="submit_form" type="submit" class="submit_btn">Search</button>
+                <button class="homepage" href="#">Home</button>
+            </ul>
+        </div>
+    </div>
 </nav>
 <div class="bg"></div>
+
 <script>
     $(window).scroll(function () {
         if ($(".navbar").offset().top > 50) {$(".navbar-fixed-top").addClass("top-nav");
         }else {$(".navbar-fixed-top").removeClass("top-nav");}})</script>
 
-<div>
+
+<!--The main page body part-->
+<div class="img_bg">
+    <img src="{% static 'images/1.jpg' %}" alt="Picture of background" width="50%" height="350" />
     {% if user.is_authenticated %}
-        hey {{ user.username }}!
+        <div class="auth_user" >
+            <p align="left">Hello {{ user.username }} !<br>
+                Welcome to SLLC computer language forum !</p>
+        </div>
     {% else %}
-        hey there partner!
+        <div class="auth_user" >
+            hey there partner! <br>
+            Please sign in!
+        </div>
     {% endif %}
-    <br />
-    <!--<strong>{{ boldmessage }}</strong><br />-->
 </div>
 
-<div>
-    <h2>Most Liked Categories</h2>
-{% if categories %}
-    <ul>
-    {% for category in categories %}
-        <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <strong>There are no categories present.</strong>
-{% endif %}
-</div>
+<div class="body_title" >The latest questions</div>
+<button class="ask_question">Ask Question</button>
 
-<div>
-    <h2>Most Viewed Pages</h2>
-{% if pages %}
-    <ul>
-    {% for page in pages %}
-        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <strong>There are no pages present.</strong>
-{% endif %}
-</div>
 
-<img src="{% static 'images/logo.JPG' %}" alt="Picture of Rango" />
+<div class="main-section">
+    <div class="list_left">
+        {% if pages %}
+            <ul>
+            {% for page in pages %}
+                <a style="font-size: 20px" href="{{ page.url }}">{{ page.title }}</a>
+                <hr align="left" width="60%"/>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no pages present.</strong>
+        {% endif %}
+    </div>
+
+    <div class="list-right">
+        <div class="box-fixed"><h3>Most Views Questions</h3>
+            {% if pages %}
+                <ul>
+                {% for page in pages %}
+                    <div class="box-contents">
+                        <a href="{{ page.url }}">{{ page.title }}</a>
+                        <hr align="left" width="30%"/>
+                    </div>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no pages present.</strong>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="list-right-2">
+        <div class="box-fixed-2"><h3>Most Likes Questions</h3>
+            {% if pages %}
+                <ul>
+                {% for page in pages %}
+                    <div class="box-contents-2">
+                        <a href="{{ page.url }}">{{ page.title }}</a>
+                        <hr align="left" width="30%"/>
+                    </div>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no pages present.</strong>
+            {% endif %}
+        </div>
+    </div>
+
+</div>>
+
+<div></div>
+
+<!--<img src="{% static 'images/logo.JPG' %}" alt="Picture of Rango" />-->
 {% endblock %}
