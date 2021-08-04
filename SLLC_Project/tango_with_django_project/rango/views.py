@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.template.defaultfilters import date
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from rango.models import Category, Page
+from rango.models import Category, Page, Question, Comment
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from datetime import datetime
+from django.core.paginator import Paginator
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
@@ -160,3 +162,25 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     
     request.session['visits'] = visits
+
+'''new index page'''
+# def index(request,p):
+#     p=int(p)
+
+#     context_dict = {}
+#     QuestionList= Paginator(Question.objects.all().order_by('date'),per_page=5)
+#     questions = QuestionList.page(p)
+
+#     
+#     most_view=Question.objects.order_by('-views')[:5]
+#     most_liked=Question.objects.order_by('-likes')[:5]
+    # context_dict['most_view'] = most_view
+    # context_dict['most_liked'] = most_liked
+#     return render(request, 'rango/index.html', locals())
+
+'''new Question page'''
+# def showComment(request,p,question):
+#     CommonList= Paginator(Comment.objects.filter(question=question),per_page=5)
+#     questions = QuestionList.page(p)
+
+#     return render(request, 'rango/index.html', locals())
