@@ -63,23 +63,23 @@
 
 <div>
 <ul>
-<li><a href="{% url 'rango:add_question' %}">
-    <button class="ask_question">Ask Question</button></a></li>
+<a href="{% url 'rango:add_question' %}">
+    <button class="ask_question">Ask Question</button></a>
 </ul>
 </div>
 
-
+<!--main left part-->
 <div class="main-section">
     <div class="list_left">
-    {% if pages %}
+    {% if questions %}
         <ul>
-        {% for page in pages %}
-            <a style="font-size: 20px" href="{{ page.url }}">{{ page.title }}</a>
+        {% for question in questions %}
+            <a style="font-size: 20px" >{{ question.title }}</a><!--href="{{ question.url }}"-->
             <hr align="left" width="60%"/>
         {% endfor %}
         </ul>
     {% else %}
-        <strong>There are no pages present.</strong>
+        <strong>There are no questions present.</strong>
     {% endif %}
     <!--login/logout-->
     {% if user.is_authenticated %}
@@ -93,37 +93,37 @@
 
 </div>
 
-<!--main left part-->
+<!--main right part-->
 <div class="list-right">
     <div class="box-fixed"><h3>Most Views Questions</h3>
-        {% if pages %}
+        {% if questions %}
             <ul>
-            {% for page in pages %}
+            {% for question in questions %}
                 <div class="box-contents">
-                    <a href="{{ page.url }}">{{ page.title }}</a>
+                    <a >{{ question.title }}</a><!--href="{{ page.url }}"-->
                     <hr align="left" width="30%"/>
                 </div>
             {% endfor %}
             </ul>
         {% else %}
-            <strong>There are no pages present.</strong>
+            <strong>There are no questions present.</strong>
         {% endif %}
     </div>
 </div>
 
 <div class="list-right-2">
     <div class="box-fixed-2"><h3>Most Likes Questions</h3>
-        {% if pages %}
+        {% if questions %}
             <ul>
-            {% for page in pages %}
+            {% for question in questions %}
                 <div class="box-contents-2">
-                    <a href="{{ page.url }}">{{ page.title }}</a>
+                    <a>{{ question.title }}</a><!--href="{{ question.url }}"-->
                     <hr align="left" width="30%"/>
                 </div>
             {% endfor %}
             </ul>
         {% else %}
-            <strong>There are no pages present.</strong>
+            <strong>There are no questions present.</strong>
         {% endif %}
     </div>
 </div>
