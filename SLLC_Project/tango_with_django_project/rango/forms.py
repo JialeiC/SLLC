@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from rango.models import Page, Category, UserProfile
+
+from rango.models import Page, Category, UserProfile, Question
 
 
 class CategoryForm(forms.ModelForm):
@@ -43,3 +44,15 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture',)
+
+class QuestionForm(forms.ModelForm):
+    title = forms.CharField(max_length=Question.TITLE_MAX_LENGTH, help_text="Please enter the title of your question.")
+    content = forms.CharField(widget=forms.Textarea, help_text="You can write down your questions here.")
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+
+
+    class Meta:
+        model = Question
+        fields = ('title','content',)
+
