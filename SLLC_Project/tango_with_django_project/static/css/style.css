@@ -1,4 +1,10 @@
 /*The navigation bar*/
+html, body {width:100%;height:100%;}
+.bg {display: table;width: 100%;height: 100%;padding: 30px 0;text-align: center;background-color: #D2B48C;background-size: cover;}
+.my-navbar {padding:6px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;font-size:15px;}
+.my-navbar a{background:transparent !important;color:#fff !important}
+.my-navbar a:hover {color:#45bcf9 !important;background:transparent;outline:0}
+.top-nav {padding:0;background:#D2B48C;}
 .search_form {
   border: none;
   padding: 8px 50px;
@@ -142,4 +148,19 @@
   position:relative;
   top:30px;
   right: 20px;
+}
+
+/*questions page*/
+.question_title{
+  position: absolute;
+  top:80px;
+  left:70px;
+  font-size: 30px;
+}
+
+.comment_part{
+  position: absolute;
+  top:150px;
+  left:70px;
+  font-size: 20px;
 }

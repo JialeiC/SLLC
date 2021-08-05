@@ -14,9 +14,9 @@ def index(request):
     page_list = Page.objects.order_by('-views')[:5]
 
     context_dict = {}
+
     context_dict['categories'] = category_list
     context_dict['pages'] = page_list
-    
     visitor_cookie_handler(request)
 
     return render(request, 'rango/index.html', context=context_dict)
@@ -162,6 +162,31 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     
     request.session['visits'] = visits
+
+@login_required
+def homepage(request):
+    category_list = Category.objects.order_by('-likes')[:5]
+    page_list = Page.objects.order_by('-views')[:]
+
+    context_dict = {}
+    context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
+
+    visitor_cookie_handler(request)
+    return render(request, 'rango/homepage.html', context=context_dict)
+
+@login_required
+def questions(request):
+    category_list = Category.objects.order_by('-likes')[:5]
+    page_list = Page.objects.order_by('-views')[:]
+
+    context_dict = {}
+    context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
+
+    visitor_cookie_handler(request)
+
+    return render(request, 'rango/questions.html', context=context_dict)
 
 '''new index page'''
 # def index(request,p):
