@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.setti
 import django
 django.setup()
 from rango.models import Category, Question, UserProfile
-
+from django.contrib.auth.models import User
 
 def populate():
     python_question=[
@@ -72,8 +72,14 @@ def populate():
             'C++': {'questions':cpp_question, 'views': 32, 'likes': 16},
             'Web': {'questions':web_question, 'views': 16, 'likes': 8}, }
 
-    
-    
+    user = User.objects.get_or_create(username='test',email='test.qq.com')[0]
+    user.set_password('123456')
+    user.save()
+
+    profile = UserProfile.objects.get_or_create(user=user)[0]
+    # profile.user = user
+    profile.save()
+
     for cat, cat_data in cats.items():
         c = add_cat(cat, views=cat_data['views'], likes=cat_data['likes'])
         for q in cat_data['questions']:
