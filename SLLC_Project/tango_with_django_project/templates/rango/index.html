@@ -71,9 +71,9 @@
 <!--main left part-->
 <div class="main-section">
     <div class="list_left">
-    {% if questions %}
+    {% if latest_question_list %}
         <ul>
-        {% for question in questions %}
+        {% for question in latest_question_list %}
             <a style="font-size: 20px" >{{ question.title }}</a><!--href="{{ question.url }}"-->
             <hr align="left" width="60%"/>
         {% endfor %}
@@ -96,9 +96,9 @@
 <!--main right part-->
 <div class="list-right">
     <div class="box-fixed"><h3>Most Views Questions</h3>
-        {% if questions %}
+        {% if most_view %}
             <ul>
-            {% for question in questions %}
+            {% for question in most_view %}
                 <div class="box-contents">
                     <a >{{ question.title }}</a><!--href="{{ page.url }}"-->
                     <hr align="left" width="30%"/>
@@ -113,9 +113,9 @@
 
 <div class="list-right-2">
     <div class="box-fixed-2"><h3>Most Likes Questions</h3>
-        {% if questions %}
+        {% if most_liked %}
             <ul>
-            {% for question in questions %}
+            {% for question in most_liked %}
                 <div class="box-contents-2">
                     <a>{{ question.title }}</a><!--href="{{ question.url }}"-->
                     <hr align="left" width="30%"/>

@@ -11,13 +11,15 @@ from django.core.paginator import Paginator
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
-    page_list: object = Page.objects.order_by('-views')[:5]
-    question_list: object = Question.objects.order_by('-views')[:5]
+    latest_question_list = Question.objects.order_by('-date')[:5]
+    most_view=Question.objects.order_by('-views')[:5]
+    most_liked=Question.objects.order_by('-likes')[:5]
+    
     context_dict = {}
-
+    context_dict['most_view'] = most_view
+    context_dict['most_liked'] = most_liked
     context_dict['categories'] = category_list
-    context_dict['questions'] = question_list
-    context_dict['pages'] = page_list
+    context_dict['latest_question_list'] = latest_question_list
     visitor_cookie_handler(request)
 
     return render(request, 'rango/index.html', context=context_dict)
@@ -34,14 +36,11 @@ def show_category(request, category_name_slug):
 
     try:
         category = Category.objects.get(slug=category_name_slug)
-        pages = Page.objects.filter(category=category)
         questions = Question.objects.filter(category=category)
 
-        context_dict['pages'] = pages
         context_dict['category'] = category
         context_dict['questions'] = questions
     except Category.DoesNotExist:
-        context_dict['pages'] = None
         context_dict['category'] = None
         context_dict['questions'] = None
     
@@ -204,21 +203,6 @@ def add_question(request):
         else:
             print(form.errors)
     return render(request, 'rango/add_question.html', {'form': form})
-
-'''new index page'''
-# def index(request,p):
-#     p=int(p)
-
-#     context_dict = {}
-#     QuestionList= Paginator(Question.objects.all().order_by('date'),per_page=5)
-#     questions = QuestionList.page(p)
-
-#     
-#     most_view=Question.objects.order_by('-views')[:5]
-#     most_liked=Question.objects.order_by('-likes')[:5]
-    # context_dict['most_view'] = most_view
-    # context_dict['most_liked'] = most_liked
-#     return render(request, 'rango/index.html', locals())
 
 '''new Question page'''
 # def showComment(request,p,question):
