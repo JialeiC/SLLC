@@ -60,7 +60,13 @@
 
 <!--main left part-->
 <div class="body_title" >The latest questions</div>
-<button class="ask_question">Ask Question</button>
+
+<div>
+<ul>
+<li><a href="{% url 'rango:add_question' %}">
+    <button class="ask_question">Ask Question</button></a></li>
+</ul>
+</div>
 
 
 <div class="main-section">
