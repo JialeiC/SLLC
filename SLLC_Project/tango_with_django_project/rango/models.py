@@ -1,7 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-import time
+import datetime
 
 
 class Category(models.Model):
@@ -54,7 +54,7 @@ class Question(models.Model):
     content = models.TextField()
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
-    date = models.DateField(auto_now_add=time.time())
+    date = models.DateTimeField(auto_now=datetime.datetime.now())
 
     def __str__(self):
         return self.title
@@ -66,7 +66,7 @@ class Comment(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     content = models.TextField()
     likes = models.IntegerField(default=0)
-    date = models.DateField(auto_now_add=time.time())
+    date = models.DateField(auto_now=datetime.datetime.now())
 
     def __str__(self):
         return self.content
