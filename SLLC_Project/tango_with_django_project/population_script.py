@@ -168,7 +168,7 @@ def populate():
             add_question(c, q['title'], q['content'], likes=q['likes'], views=q['views'])
     
     for c in comments:
-        addCommon(question_id=c['question_id'], content=c['content'])
+        addComment(question_id=c['question_id'], content=c['content'])
 
     for c in Category.objects.all():
         for q in Question.objects.filter(category=c):
@@ -191,7 +191,7 @@ def add_cat(name, views=0, likes=0):
     c.save()
     return c
 
-def addCommon(question_id,content):
+def addComment(question_id,content):
     c = Comment.objects.get_or_create(question_id=question_id,content=content,user_id=1)[0]
     c.save()
 
