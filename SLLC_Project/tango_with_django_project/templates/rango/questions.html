@@ -42,9 +42,15 @@
 
 
 <div>
+    {% if question %}
+
+        <div class="question_title">{{ question.title }}</div>
+        <div class="question_content">{{ question.content }}</div>
+
+    {% endif %}
+
     {% if commentList %}
         {% for comment in commentList %}
-            <!-- <div class="question_title">{{ comment.title }}</div> -->
             <div class="question_content">{{ comment.content }}</div>
         {% endfor %}
     {% else %}
