@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from rango.models import Page, Category, UserProfile, Question
+from rango.models import Page, Category, UserProfile, Question, Comment
 
 
 class CategoryForm(forms.ModelForm):
@@ -57,3 +57,12 @@ class QuestionForm(forms.ModelForm):
         fields = ('title','content',)
         exclude = ('user','category',)
 
+class CommentForm(forms.ModelForm):
+    
+    content = forms.CharField(widget=forms.Textarea, help_text="You can write down your questions here.")
+    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    date = forms.DateTimeField(widget=forms.HiddenInput())
+
+    class Meta:
+        model = Comment
+        fields = ('content',)

@@ -74,7 +74,7 @@
     {% if latest_question_list %}
         <ul>
         {% for question in latest_question_list %}
-            <a style="font-size: 25px" href="{% url 'rango:questions' %}">{{ question.title }}</a><br><br><!--href="{{ question.url }}"-->
+            <a style="font-size: 25px" href="{% url 'rango:questions' question.id %}">{{ question.title }}</a><br><br>
             <a style="font-size: 15px">{{ question.content }}</a><br><br>
             <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
             <a >{{ question.likes }}</a>
@@ -89,7 +89,6 @@
     <!--login/logout-->
     {% if user.is_authenticated %}
         <a href="{% url 'rango:restricted' %}">Restricted Page</a>&nbsp&nbsp&nbsp&nbsp
-        <a href="{% url 'rango:questions' %}">questions</a><br>
         <a href="{% url 'rango:logout' %}">Logout</a><br>
     {% else %}
         <a href="{% url 'rango:register' %}">Sign Up</a><br>
@@ -106,7 +105,7 @@
             {% for question in most_view %}
                 <div class="box-contents">
                     <div class="like_pic">
-                            <a href="{% url 'rango:questions' %}">{{ question.title }}</a><!--href="{{ page.url }}"-->
+                            <a href="{% url 'rango:questions' question.id %}">{{ question.title }}</a>
                             <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
                             <a >{{ question.likes }}</a>
                             <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
@@ -128,7 +127,7 @@
             <ul>
             {% for question in most_liked %}
                 <div class="box-contents-2">
-                    <a href="{% url 'rango:questions' %}">{{ question.title }}</a><!--href="{{ question.url }}"-->
+                    <a href="{% url 'rango:questions' question.id %}">{{ question.title }}</a>
                     <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
                     <a >{{ question.likes }}</a>
                     <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>

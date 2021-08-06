@@ -244,8 +244,23 @@ def search_do(request):
 
 
 '''new Question page'''
-# def showComment(request,p,question):
-#     CommonList= Paginator(Comment.objects.filter(question=question),per_page=5)
-#     questions = QuestionList.page(p)
+def showComment(request, question_id):
+    context_dict = {}
 
-#     return render(request, 'rango/index.html', locals())
+    question= Question.objects.get(id=question_id)
+    commentList=Comment.objects.filter(question_id=question_id)
+    # CommonList= Paginator(Comment.objects.filter(question=question),per_page=5)
+    # questions = QuestionList.page(p)
+    context_dict['question']=question
+    context_dict['commentList']=commentList
+
+    return render(request, 'rango/questions.html', context=context_dict)
+
+
+@login_required
+def add_comment(request):
+    if request.POST:
+        content = request.POST.get('content')
+        comment = Comment(user=request.user,question=request.question,content=content)
+        comment.save()
+    return render(request, 'index.html')

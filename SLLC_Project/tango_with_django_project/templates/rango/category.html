@@ -62,7 +62,7 @@
     {% if questions %}
         <ul>
         {% for question in questions %}
-            <a style="font-size: 25px" href="{% url 'rango:questions' %}">{{ question.title }}</a><br><br><!--href="{{ question.url }}"-->
+            <a style="font-size: 25px" href="{% url 'rango:questions' question.id%}">{{ question.title }}</a><br><br><!--href="{{ question.url }}"-->
             <a style="font-size: 15px">{{ question.content }}</a><br><br>
             <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
             <a >{{ question.likes }}</a>
@@ -75,7 +75,6 @@
         <strong>There are no questions present.</strong>
     {% endif %}
 <a href="{% url 'rango:index' %}">Main Page</a>
-<a href="{% url 'rango:questions' %}">questions</a><br>
 </div>
 
 <!--main right part-->
@@ -86,7 +85,7 @@
             <ul>
             {% for question in most_view %}
                 <div class="box-contents">
-                    <a href="{% url 'rango:questions' %}">{{ question.title }}</a><!--href="{{ questions.url }}"-->
+                    <a href="{% url 'rango:questions' question.id %}">{{ question.title }}</a>
                     <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
                     <a >{{ question.likes }}</a>
                     <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
@@ -108,7 +107,7 @@
             <ul>
             {% for question in most_liked %}
                 <div class="box-contents-2">
-                    <a href="{% url 'rango:questions' %}">{{ question.title }}</a> <!--href="{{ question.url }}"-->
+                    <a href="{% url 'rango:questions' question.id %}">{{ question.title }}</a>
                     <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
                     <a >{{ question.likes }}</a>
                     <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>

@@ -42,10 +42,10 @@
 
 
 <div>
-    {% if question1 %}
-        {% for question in question1 %}
-            <div class="question_title">{{ question.title }}</div>
-            <div class="question_content">{{ question.content }}</div>
+    {% if commentList %}
+        {% for comment in commentList %}
+            <!-- <div class="question_title">{{ comment.title }}</div> -->
+            <div class="question_content">{{ comment.content }}</div>
         {% endfor %}
     {% else %}
         <strong>No questions currently in category.</strong>
@@ -56,7 +56,7 @@
 <div class="question_comment">
 Comment:
 <p>Post your comment below:</p>
-<form id="comment_form" method="post" action="{% url 'rango:questions' %}">
+<form id="comment_form" method="post" action="{% url 'rango:add_comment' %}">
     {% csrf_token %}
     <textarea id="comment_id"  rows ="5" cols="80" name="comment"></textarea>
     <input class="submit_comment" type="submit" name="submit" value="Comment"/>
