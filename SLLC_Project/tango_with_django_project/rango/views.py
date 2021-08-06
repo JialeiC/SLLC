@@ -27,11 +27,13 @@ def index(request):
 @login_required
 def questions(request):
     category_list = Category.objects.order_by('-likes')[:5]
-    question_list = Question.objects.order_by('-views')[:]
+    question_list1 = Question.objects.order_by('-date')[:1]
+    question_list2 = Question.objects.order_by('-date')[1:2]
 
     context_dict = {}
     context_dict['categories'] = category_list
-    context_dict['questions'] = question_list
+    context_dict['question1'] = question_list1
+    context_dict['question2'] = question_list2
 
     visitor_cookie_handler(request)
 

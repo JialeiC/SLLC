@@ -39,38 +39,28 @@
 <div class="bg"></div>
 
 
-
-{% if question_list %}
-    {% for question in question_list %}
-    <div class="body_title" >{{ question.title }}</div>
-    {% endfor %}
-{% else %}
-    <strong>No questions currently in category.</strong>
-{% endif %}
-
 <div>
-    <div class="question_title">What are Python namespaces? Why are they used?</div>
-    <div class="comment_part">
-        <li>hello,I'm the first comment.</li><br><br>
-        <li>hello,I'm the first comment.</li><br><br>
-        <li>hello,I'm the first comment.</li><br><br>
-    <a href="javascript:;" class="reply_btn"  action="{% url 'rango:questions'%}">comment</a>
-    </div>
-
+    {% if question1 %}
+        {% for question in question1 %}
+            <div class="question_title">{{ question.title }}</div>
+            <div class="question_content">{{ question.content }}</div>
+        {% endfor %}
+    {% else %}
+        <strong>No questions currently in category.</strong>
+    {% endif %}
+    <a class="side" href="{% url 'rango:index' %}">Main page</a>
 </div>
-<div>
+
+<div class="question_comment">
+Comment:
+<p>Post your comment below:</p>
 <form id="comment_form" method="post" action="{% url 'rango:questions' %}">
     {% csrf_token %}
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
-    {% for field in form.visible_fields %}
-        {{ field.errors }}
-        {{ field.help_text }}
-        {{ field }}
-    {% endfor %}
-    <input type="submit" name="submit" value="Comment" />
+    <textarea id="comment_id"  rows ="5" cols="80" name="comment"></textarea>
+    <input class="submit_comment" type="submit" name="submit" value="Comment"/>
 </form>
+
 </div>
-<li><a href="{% url 'rango:index' %}">Main page</a></li>
+
+
 {% endblock %}
