@@ -44,10 +44,10 @@
             {% for c in catalogs %}
             <option value="{{c.id}}">{{c.name}}</option>
             {% endfor %}
-        </select><br><br>
+        </select><br>
         <p />
         <p>You can write down your questions here.</p>
-        <textarea class="form-control" placeholder="Content" name="content_question" id="content_question"></textarea>
+        <textarea class="form-control" placeholder="Content" name="content_question" id="content_question" rows ="5" cols="80"></textarea>
         <button class="submit_question" type="button" onclick="add_question()" name="submit" >Create Question</button>
         <p />
     </form>
