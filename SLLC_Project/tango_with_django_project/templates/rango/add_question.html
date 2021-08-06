@@ -31,28 +31,27 @@
 </nav>
 <div class="bg"></div>
 
-<h1>Add a Question</h1>
+<div class="text-center">
+<h1 class="h3 mb-3 font-weight-normal">Add a Question</h1>
     <div>
     <form id="question_form" method="post" action="../../../rango/addquestion_do/">
-        <p>
-        <h3>title:</h3>
-        <input type="text" name="title_question" id="title_question">
-        </p>
+        <p>Please enter the title of your question.</p>
+        <label for="inputTitle" class="sr-only">Title</label>
+        <input type="text" name="title_question" id="title_question" class="form-control" placeholder="Title">
 
-        <p>
-        <h3>catalog</h3>
+        <h2>category</h2>
         <select name="catalogs_question" id="catalogs_question">
             {% for c in catalogs %}
             <option value="{{c.id}}">{{c.name}}</option>
             {% endfor %}
-        </select>
-        </p>
-        <p>
-        <textarea name="content_question" id="content_question"></textarea>
-        </p>
+        </select><br><br>
+        <p />
+        <p>You can write down your questions here.</p>
+        <textarea class="form-control" placeholder="Content" name="content_question" id="content_question"></textarea>
         <button class="submit_question" type="button" onclick="add_question()" name="submit" >Create Question</button>
+        <p />
     </form>
+    </div>
 
-
-
+</div>
 {% endblock %}

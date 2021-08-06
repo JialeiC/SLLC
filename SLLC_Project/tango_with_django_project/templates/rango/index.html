@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block body_block %}
-
 <!--The navigation bar-->
 <nav class="navbar navbar-fixed-top my-navbar" role="navigation">
     <div class="container-fluid">
@@ -24,7 +23,7 @@
             <ul class="nav navbar-nav">
                 {% if categories %}
                     {% for category in categories %}
-                        <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>&nbsp
+                        <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>
                     {% endfor %}
                 {% else %}
                     <strong>There are no categories present.</strong>
@@ -146,5 +145,4 @@
 
 </div>
 
-<!--<img src="{% static 'images/logo.JPG' %}" alt="Picture of Rango" />-->
 {% endblock %}
