@@ -41,21 +41,10 @@
 <h1 class="display-3">Login</h1>
 </div>
 
-<!--<form id="login_form" method="post" action="{% url 'rango:login' %}">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
-    <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br />
-    <input type="submit" value="submit"/>
-</form>
-    <input type="submit" value="submit" />
-</form> -->
 <div class="text-center">
 <form class="form-signin" role="form" method="post" action=".">
     {% csrf_token %}
     <img class="mb-4" src="{% static 'images/logo.JPG' %}" alt="Picture of Rango" width="72" height="72">
-    <!--<h2 class="form-signin-heading">Please sign in</h2>-->
     <h2 class="h3 mb-3 font-weight-normal">Please sign in</h2>
       <label for="inputUsername" class="sr-only">Username</label>
       <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required="" autofocus="">
@@ -64,4 +53,10 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />Sign in</button>
 </form>
 </div>
+<<<<<<< HEAD
 {% endblock %}
+=======
+
+{% endblock %}
+
+>>>>>>> 6e3957022b2cbbabc4c6a78a5effda1f93ab079d
