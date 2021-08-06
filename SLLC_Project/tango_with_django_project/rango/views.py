@@ -4,6 +4,7 @@ from django.template.defaultfilters import date
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from rango.models import Category, Page, Question, Comment
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm, QuestionForm
 from datetime import datetime
@@ -190,8 +191,8 @@ def visitor_cookie_handler(request):
 
 @login_required
 def homepage(request):
+    page_list = Question.objects.filter(user=request.user)
     category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('-views')[:]
 
     context_dict = {}
     context_dict['categories'] = category_list
@@ -200,23 +201,38 @@ def homepage(request):
     visitor_cookie_handler(request)
     return render(request, 'rango/homepage.html', context=context_dict)
 
+# show add question pages
+@login_required
 def add_question(request):
-    form = QuestionForm()
+    catalogs = Category.objects.all()
+    context = {}
+    context["catalogs"] = catalogs
+    return render(request, 'rango/add_question.html', context)
 
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
 
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect(reverse('rango:index'))
-        else:
-            print(form.errors)
-    return render(request, 'rango/add_question.html', {'form': form})
+@login_required
+@csrf_exempt
+def addquestion_do(request):
+    if request.POST:
+        title_question = request.POST.get('title_question')
+        catalogs_question = request.POST.get('catalogs_question')
+        content_question = request.POST.get('content_question')
+        catalog = Category.objects.get(id=catalogs_question)
+        obj = Question(
+            user=request.user,
+            category=catalog,
+            title=title_question,
+            content=content_question
+        )
+        obj.save()
+    return HttpResponse("../../rango")
+
 
 @login_required
 def search_do(request):
     search_item = request.GET.get('search')
-    page_list = Question.objects.filter(title__icontains=search_item)
+    current_user = request.user
+    page_list = Question.objects.filter(user= current_user,title__icontains=search_item)
     category_list = Category.objects.order_by('-likes')[:5]
     context_dict = {}
     context_dict['current_page'] = search_item

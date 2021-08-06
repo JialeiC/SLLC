@@ -33,20 +33,26 @@
 
 <h1>Add a Question</h1>
     <div>
-    <form id="question_form" method="post" action="{% url 'rango:add_question' %}">
-        {% csrf_token %}
-    <!--    {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-        {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
-        {% endfor %}     -->
-        {{ form.as_p }}
-        <br>
-        <button class="submit_question" type="submit" name="submit" >Create Question</button>
+    <form id="question_form" method="post" action="../../../rango/addquestion_do/">
+        <p>
+        <h3>title:</h3>
+        <input type="text" name="title_question" id="title_question">
+        </p>
+
+        <p>
+        <h3>catalog</h3>
+        <select name="catalogs_question" id="catalogs_question">
+            {% for c in catalogs %}
+            <option value="{{c.id}}">{{c.name}}</option>
+            {% endfor %}
+        </select>
+        </p>
+        <p>
+        <textarea name="content_question" id="content_question"></textarea>
+        </p>
+        <button class="submit_question" type="button" onclick="add_question()" name="submit" >Create Question</button>
     </form>
     </div>
+
 
 {% endblock %}
