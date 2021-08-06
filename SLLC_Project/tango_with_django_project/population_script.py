@@ -3,7 +3,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.setti
 
 import django
 django.setup()
-from rango.models import Category, Question, UserProfile
+from rango.models import Category, Question, UserProfile, Comment
 from django.contrib.auth.models import User
 
 def populate():
@@ -103,6 +103,53 @@ def populate():
          'views': 77}
     ]
 
+    comments=[
+        {'question_id':1,'content':'python_1_comment_1'},
+        {'question_id':1,'content':'python_1_comment_2'},
+        {'question_id':2,'content':'python_2_comment_1'},
+        {'question_id':2,'content':'python_2_comment_2'},
+        {'question_id':3,'content':'python_3_comment_1'},
+        {'question_id':3,'content':'python_3_comment_2'},
+        {'question_id':4,'content':'python_4_comment_1'},
+        {'question_id':4,'content':'python_4_comment_2'},
+        {'question_id':5,'content':'python_5_comment_1'},
+        {'question_id':5,'content':'python_5_comment_2'},
+
+        {'question_id':6,'content':'java_1_comment_1'},
+        {'question_id':6,'content':'java_1_comment_2'},
+        {'question_id':7,'content':'java_2_comment_1'},
+        {'question_id':7,'content':'java_2_comment_2'},
+        {'question_id':8,'content':'java_3_comment_1'},
+        {'question_id':8,'content':'java_3_comment_2'},
+        {'question_id':9,'content':'java_4_comment_1'},
+        {'question_id':9,'content':'java_4_comment_2'},
+        {'question_id':10,'content':'java_5_comment_1'},
+        {'question_id':10,'content':'java_5_comment_2'},
+
+        {'question_id':11,'content':'c++_1_comment_1'},
+        {'question_id':11,'content':'c++_1_comment_2'},
+        {'question_id':12,'content':'c++_2_comment_1'},
+        {'question_id':12,'content':'c++_2_comment_2'},
+        {'question_id':13,'content':'c++_3_comment_1'},
+        {'question_id':13,'content':'c++_3_comment_2'},
+        {'question_id':14,'content':'c++_4_comment_1'},
+        {'question_id':14,'content':'c++_4_comment_2'},
+        {'question_id':15,'content':'c++_5_comment_1'},
+        {'question_id':15,'content':'c++_5_comment_2'},
+
+        {'question_id':16,'content':'web_1_comment_1'},
+        {'question_id':16,'content':'web_1_comment_2'},
+        {'question_id':17,'content':'web_2_comment_1'},
+        {'question_id':17,'content':'web_2_comment_2'},
+        {'question_id':18,'content':'web_3_comment_1'},
+        {'question_id':18,'content':'web_3_comment_2'},
+        {'question_id':19,'content':'web_4_comment_1'},
+        {'question_id':19,'content':'web_4_comment_2'},
+        {'question_id':20,'content':'web_5_comment_1'},
+        {'question_id':20,'content':'web_5_comment_2'},
+
+    ]
+
     cats = {'Python': {'questions':python_question, 'views': 128, 'likes': 64},
             'Java': {'questions':java_question, 'views': 64, 'likes': 32},
             'C++': {'questions':cpp_question, 'views': 32, 'likes': 16},
@@ -113,7 +160,6 @@ def populate():
     user.save()
 
     profile = UserProfile.objects.get_or_create(user=user)[0]
-    # profile.user = user
     profile.save()
 
     for cat, cat_data in cats.items():
@@ -121,18 +167,20 @@ def populate():
         for q in cat_data['questions']:
             add_question(c, q['title'], q['content'], likes=q['likes'], views=q['views'])
     
+    for c in comments:
+        addCommon(question_id=c['question_id'], content=c['content'])
+
     for c in Category.objects.all():
         for q in Question.objects.filter(category=c):
             print(f'- {c}: {q}')
 
+    
+
 def add_question(cat, title, content, likes, views): 
     q = Question.objects.get_or_create(category=cat, title=title, user_id=1)[0]
-    # q.user_id=1
-    # q.title=title
     q.content=content
     q.likes=likes
     q.views=views
-    # q.date=str(time.time())
     q.save()
     return q
 
@@ -142,6 +190,10 @@ def add_cat(name, views=0, likes=0):
     c.likes = likes
     c.save()
     return c
+
+def addCommon(question_id,content):
+    c = Comment.objects.get_or_create(question_id=question_id,content=content,user_id=1)[0]
+    c.save()
 
 if __name__ == '__main__':
     print('Starting Rango population script...')
