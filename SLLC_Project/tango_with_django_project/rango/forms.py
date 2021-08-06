@@ -50,9 +50,10 @@ class QuestionForm(forms.ModelForm):
     content = forms.CharField(widget=forms.Textarea, help_text="You can write down your questions here.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-
+    date = forms.DateTimeField(widget=forms.HiddenInput())
 
     class Meta:
         model = Question
         fields = ('title','content',)
+        exclude = ('user','category',)
 
