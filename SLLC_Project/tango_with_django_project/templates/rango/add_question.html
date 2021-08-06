@@ -29,22 +29,18 @@
 </nav>
 <div class="bg"></div>
 
-<h1>Add a Question</h1>
-    <div>
-    <form id="question_form" method="post" action="{% url 'rango:add_question' %}">
-        {% csrf_token %}
-    <!--    {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-        {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
-        {% endfor %}     -->
-        {{ form.as_p }}
-        <br>
-        <button class="submit_question" type="submit" name="submit" >Create Question</button>
-    </form>
+ <div class="text-center">
+<form class="form-signin" role="form" method="post" action=".">
+    {% csrf_token %}
+    <h2 class="h3 mb-3 font-weight-normal">Add a Question</h2>
+      <p>Please enter the title of your question.</p>
+      <label for="inputTitle" class="sr-only">Title</label>
+      <input type="text" name="title" id="question_id" class="form-control" placeholder="Title" required="" autofocus="">
+      <p>You can write down your questions here.</p>
+      <textarea class="form-control" placeholder="Content" name="content" rows ="5" cols="80"></textarea>
+    <button class="submit_question" type="submit" name="submit" >Create Question</button>
+     <p />
+</form>
     </div>
 
 {% endblock %}
