@@ -51,7 +51,7 @@
 {% if user.is_authenticated %}
 <button class="ask_question" ><a href="{% url 'rango:add_page' category.slug %}"> Ask Question </button></a> <br />
 {% else %}
-The specified category does not exist.
+<button class="ask_question" ><a href="{% url 'rango:login' %}"> Sign in  </button></a> <br />
 {% endif %}
 
 <div class="main-section">

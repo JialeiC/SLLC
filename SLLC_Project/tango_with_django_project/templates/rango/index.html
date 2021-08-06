@@ -99,7 +99,13 @@
             <ul>
             {% for question in most_view %}
                 <div class="box-contents">
-                    <a >{{ question.title }}</a><!--href="{{ page.url }}"-->
+                    <div class="like_pic">
+                            <a >{{ question.title }}</a><!--href="{{ page.url }}"-->
+                            <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
+                            <a >{{ question.likes }}</a>
+                            <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
+                            <a >{{ question.views }}</a>
+                    </div>
                     <hr align="left" width="30%"/>
                 </div>
             {% endfor %}
