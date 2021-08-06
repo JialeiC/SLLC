@@ -73,7 +73,12 @@
     {% if latest_question_list %}
         <ul>
         {% for question in latest_question_list %}
-            <a style="font-size: 20px" >{{ question.title }}</a><!--href="{{ question.url }}"-->
+            <a style="font-size: 25px" href="{% url 'rango:questions' %}">{{ question.title }}</a><br><br><!--href="{{ question.url }}"-->
+            <a style="font-size: 15px">{{ question.content }}</a><br><br>
+            <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
+            <a >{{ question.likes }}</a>
+            <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
+            <a >{{ question.views }}</a>
             <hr align="left" width="60%"/>
         {% endfor %}
         </ul>
@@ -100,7 +105,7 @@
             {% for question in most_view %}
                 <div class="box-contents">
                     <div class="like_pic">
-                            <a >{{ question.title }}</a><!--href="{{ page.url }}"-->
+                            <a href="{% url 'rango:questions' %}">{{ question.title }}</a><!--href="{{ page.url }}"-->
                             <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
                             <a >{{ question.likes }}</a>
                             <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
@@ -122,7 +127,11 @@
             <ul>
             {% for question in most_liked %}
                 <div class="box-contents-2">
-                    <a>{{ question.title }}</a><!--href="{{ question.url }}"-->
+                    <a href="{% url 'rango:questions' %}">{{ question.title }}</a><!--href="{{ question.url }}"-->
+                    <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
+                    <a >{{ question.likes }}</a>
+                    <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
+                    <a >{{ question.views }}</a>
                     <hr align="left" width="30%"/>
                 </div>
             {% endfor %}

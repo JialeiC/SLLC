@@ -24,6 +24,19 @@ def index(request):
 
     return render(request, 'rango/index.html', context=context_dict)
 
+@login_required
+def questions(request):
+    category_list = Category.objects.order_by('-likes')[:5]
+    question_list = Question.objects.order_by('-views')[:]
+
+    context_dict = {}
+    context_dict['categories'] = category_list
+    context_dict['questions'] = question_list
+
+    visitor_cookie_handler(request)
+
+    return render(request, 'rango/questions.html', context=context_dict)
+
 def about(request):
     context_dict = {}
     visitor_cookie_handler(request)
@@ -37,14 +50,21 @@ def show_category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         questions = Question.objects.filter(category=category)
+        most_view = Question.objects.order_by('-views')[:5]
+        most_liked = Question.objects.order_by('-likes')[:5]
 
         context_dict['category'] = category
         context_dict['questions'] = questions
+        context_dict['most_view'] = most_view
+        context_dict['most_liked'] = most_liked
     except Category.DoesNotExist:
         context_dict['category'] = None
         context_dict['questions'] = None
+        context_dict['most_view'] = None
+        context_dict['most_liked'] = None
     
     return render(request, 'rango/category.html', context=context_dict)
+
 
 @login_required
 def add_category(request):
@@ -177,19 +197,6 @@ def homepage(request):
 
     visitor_cookie_handler(request)
     return render(request, 'rango/homepage.html', context=context_dict)
-
-@login_required
-def questions(request):
-    category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('-views')[:]
-
-    context_dict = {}
-    context_dict['categories'] = category_list
-    context_dict['pages'] = page_list
-
-    visitor_cookie_handler(request)
-
-    return render(request, 'rango/questions.html', context=context_dict)
 
 def add_question(request):
     form = QuestionForm()

@@ -102,7 +102,7 @@ def populate():
          'likes': 15,
          'views': 77}
     ]
-    
+
     cats = {'Python': {'questions':python_question, 'views': 128, 'likes': 64},
             'Java': {'questions':java_question, 'views': 64, 'likes': 32},
             'C++': {'questions':cpp_question, 'views': 32, 'likes': 16},
@@ -124,6 +124,7 @@ def populate():
     for c in Category.objects.all():
         for q in Question.objects.filter(category=c):
             print(f'- {c}: {q}')
+
 def add_question(cat, title, content, likes, views): 
     q = Question.objects.get_or_create(category=cat, title=title, user_id=1)[0]
     # q.user_id=1

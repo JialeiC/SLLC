@@ -54,12 +54,18 @@
 <button class="ask_question" ><a href="{% url 'rango:login' %}"> Sign in  </button></a> <br />
 {% endif %}
 
+<!--main left part-->
 <div class="main-section">
     <div class="list_left">
     {% if questions %}
         <ul>
         {% for question in questions %}
-            <a style="font-size: 20px" >{{ question.title }}</a><!--href="{{ page.url }}-->
+            <a style="font-size: 25px" href="{% url 'rango:questions' %}">{{ question.title }}</a><br><br><!--href="{{ question.url }}"-->
+            <a style="font-size: 15px">{{ question.content }}</a><br><br>
+            <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
+            <a >{{ question.likes }}</a>
+            <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
+            <a >{{ question.views }}</a>
             <hr align="left" width="60%"/>
         {% endfor %}
         </ul>
@@ -70,14 +76,19 @@
 <a href="{% url 'rango:questions' %}">questions</a><br>
 </div>
 
-<!--main left part-->
+<!--main right part-->
+<!--Most Views Questions-->
 <div class="list-right">
     <div class="box-fixed"><h3>Most Views Questions</h3>
-        {% if questions %}
+        {% if most_view %}
             <ul>
-            {% for question in questions %}
+            {% for question in most_view %}
                 <div class="box-contents">
-                    <a >{{ question.title }}</a><!--href="{{ questions.url }}"-->
+                    <a href="{% url 'rango:questions' %}">{{ question.title }}</a><!--href="{{ questions.url }}"-->
+                    <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
+                    <a >{{ question.likes }}</a>
+                    <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
+                    <a >{{ question.views }}</a>
                     <hr align="left" width="30%"/>
                 </div>
             {% endfor %}
@@ -88,13 +99,18 @@
     </div>
 </div>
 
+<!--Most Likes Questions-->
 <div class="list-right-2">
     <div class="box-fixed-2"><h3>Most Likes Questions</h3>
-        {% if questions %}
+        {% if most_liked %}
             <ul>
-            {% for question in questions %}
+            {% for question in most_liked %}
                 <div class="box-contents-2">
-                    <a>{{ question.title }}</a> <!--href="{{ question.url }}"-->
+                    <a href="{% url 'rango:questions' %}">{{ question.title }}</a> <!--href="{{ question.url }}"-->
+                    <img src="{% static 'images/like.png' %}" alt="Picture of Like" width="15" height="15"/>
+                    <a >{{ question.likes }}</a>
+                    <img src="{% static 'images/view.png' %}" alt="Picture of Like" width="15" height="15"/>
+                    <a >{{ question.views }}</a>
                     <hr align="left" width="30%"/>
                 </div>
             {% endfor %}
