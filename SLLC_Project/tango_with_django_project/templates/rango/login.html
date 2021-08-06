@@ -20,8 +20,6 @@
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                <input class="search_form" type="search" name="search" placeholder="Search here...">
-                <button class="submit_form" type="submit" class="submit_btn">Search</button>
                 {% if user.is_authenticated %}
                 <button class="homepage"> <a href="{% url 'rango:homepage' %}"> Home</a></button>
                 {% else %}
@@ -38,16 +36,6 @@
 <h1 class="display-3">Login</h1>
 </div>
 
-<!--<form id="login_form" method="post" action="{% url 'rango:login' %}">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
-    <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br />
-    <input type="submit" value="submit"/>
-</form>
-    <input type="submit" value="submit" />
-</form> -->
 <div class="text-center">
 <form class="form-signin" role="form" method="post" action=".">
     {% csrf_token %}
@@ -61,8 +49,6 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />Sign in</button>
 </form>
 </div>
-<<<<<<< HEAD
+
 {% endblock %}
-=======
-{% endblock %}
->>>>>>> 99ac98e2e891e03bb29fc4462438c97b573df9ca
+
