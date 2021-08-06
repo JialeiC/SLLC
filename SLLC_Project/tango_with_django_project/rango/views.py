@@ -213,6 +213,20 @@ def add_question(request):
             print(form.errors)
     return render(request, 'rango/add_question.html', {'form': form})
 
+@login_required
+def search_do(request):
+    search_item = request.GET.get('search')
+    page_list = Question.objects.filter(title__icontains=search_item)
+    category_list = Category.objects.order_by('-likes')[:5]
+    context_dict = {}
+    context_dict['current_page'] = search_item
+    context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
+
+    visitor_cookie_handler(request)
+    return render(request, 'rango/searchpage.html', context=context_dict)
+
+
 '''new Question page'''
 # def showComment(request,p,question):
 #     CommonList= Paginator(Comment.objects.filter(question=question),per_page=5)

@@ -16,4 +16,5 @@ urlpatterns = [
     path('homepage/', views.homepage, name='homepage'),
     path('questions/', views.questions, name='questions'),
     path('add_question/', views.add_question, name='add_question'),
+    path('search_do/', views.search_do, name="search"),
 ]

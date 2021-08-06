@@ -29,8 +29,10 @@
                 {% else %}
                     Unknown Category
                 {% endif %}-->
-                <input class="search_form" type="search" name="search" placeholder="Search here...">
-                <button class="submit_form" type="submit" class="submit_btn">Search</button>
+                  <form class="form-inline"  action="../../../rango/search_do/" role="form">
+                    <input class="search_form" type="search" name="search" id="search" placeholder="Search here...">
+                    <button class="submit_form" type="submit" class="submit_btn">Search</button>
+                </form>
                 {% if user.is_authenticated %}
                 <button class="homepage"> <a href="{% url 'rango:homepage' %}"> Home</a></button>
                 {% else %}
